@@ -8,12 +8,17 @@ namespace AuthoringAndMono
 {
     public class BattleArenaMono : MonoBehaviour
     {
+        // battle arena parameters
         public float2 FieldDimensions;
         public int NumberOfObstaclesToSpawn;
+        // obstacle prefabs
         public GameObject ObstaclePrefab;
         public GameObject ObstaclePrefab2;
         public GameObject ObstaclePrefab3;
+        // random values
         public uint RandomSeed;
+        // troop prefabs
+        public GameObject PlayerTroopPrefab;
     }
 
     public class BattleArenaBaker : Baker<BattleArenaMono>
