@@ -1,4 +1,5 @@
 ﻿using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace ComponentsAndTags
@@ -18,7 +19,36 @@ namespace ComponentsAndTags
         // Getting Number of obstacles to spawn
         public int NumberOfObstaclesToSpawn => _battleArenaProperties.ValueRO.NumberOfObstaclesToSpawn;
         
-        // Obstacle prefab
+        // Obstacle prefabs
         public Entity ObstaclePrefab => _battleArenaProperties.ValueRO.ObstaclePrefab;
+        public Entity ObstaclePrefab2 => _battleArenaProperties.ValueRO.ObstaclePrefab2;
+        public Entity ObstaclePrefab3 => _battleArenaProperties.ValueRO.ObstaclePrefab3;
+
+        public LocalTransform GetRandomObstacleTransform()
+        {
+            return new LocalTransform
+            {
+                Position = GetRandomPosition(),
+                Rotation = quaternion.identity,
+                Scale = 1
+            };
+        }
+
+        private float3 GetRandomPosition()
+        {
+            float3 randomPosition;
+            randomPosition = _battleArenaRandom.ValueRW.Value.NextFloat3(MinCorner, MaxCorner);
+            return randomPosition;
+        }
+        
+        private float3 HalfDimension => new ()
+        {
+            x = _battleArenaProperties.ValueRO.FieldDimensions.x / 2,
+            y = 0,
+            z = _battleArenaProperties.ValueRO.FieldDimensions.y / 2
+        };
+
+        private float3 MinCorner => Transform.Position - HalfDimension;
+        private float3 MaxCorner => Transform.Position + HalfDimension;
     }
 } 

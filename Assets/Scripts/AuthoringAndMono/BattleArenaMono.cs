@@ -11,6 +11,8 @@ namespace AuthoringAndMono
         public float2 FieldDimensions;
         public int NumberOfObstaclesToSpawn;
         public GameObject ObstaclePrefab;
+        public GameObject ObstaclePrefab2;
+        public GameObject ObstaclePrefab3;
         public uint RandomSeed;
     }
 
@@ -24,7 +26,9 @@ namespace AuthoringAndMono
                     {
                         FieldDimensions = authoring.FieldDimensions,
                         NumberOfObstaclesToSpawn = authoring.NumberOfObstaclesToSpawn,
-                        ObstaclePrefab = GetEntity(authoring.ObstaclePrefab, TransformUsageFlags.Dynamic)
+                        ObstaclePrefab = GetEntity(authoring.ObstaclePrefab, TransformUsageFlags.Dynamic),
+                        ObstaclePrefab2 = GetEntity(authoring.ObstaclePrefab2, TransformUsageFlags.Dynamic),
+                        ObstaclePrefab3 = GetEntity(authoring.ObstaclePrefab3, TransformUsageFlags.Dynamic)
                     }
                 );
             AddComponent(graveyardEntity, 

@@ -8,6 +8,8 @@ namespace ComponentsAndTags
         public float2 FieldDimensions;
         public int NumberOfObstaclesToSpawn;
         public Entity ObstaclePrefab;
+        public Entity ObstaclePrefab2;
+        public Entity ObstaclePrefab3;
         public Random Value;
     }
 }
