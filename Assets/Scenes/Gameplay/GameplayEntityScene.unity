@@ -140,19 +140,35 @@ PrefabInstance:
         type: 3}
       propertyPath: ObstaclePrefab
       value: 
-      objectReference: {fileID: 2465079734990110219, guid: af0251662ce5880478fc4015a2c7df13,
+      objectReference: {fileID: 1802403485205132938, guid: b3adc28c1cbf86049a5ba0730733e633,
         type: 3}
     - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
         type: 3}
       propertyPath: ObstaclePrefab2
       value: 
-      objectReference: {fileID: 747650783486759730, guid: 42d1030afaa0b924583d1852dab2d898,
+      objectReference: {fileID: 1802403485205132938, guid: b3adc28c1cbf86049a5ba0730733e633,
         type: 3}
     - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
         type: 3}
       propertyPath: ObstaclePrefab3
       value: 
-      objectReference: {fileID: 75310195703394631, guid: a178e3ddd4a467d4090e2b4a7a5e394f,
+      objectReference: {fileID: 1802403485205132938, guid: b3adc28c1cbf86049a5ba0730733e633,
+        type: 3}
+    - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
+        type: 3}
+      propertyPath: FieldDimensions.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
+        type: 3}
+      propertyPath: FieldDimensions.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
+        type: 3}
+      propertyPath: PlayerTroopPrefab
+      value: 
+      objectReference: {fileID: 492455677449795588, guid: be198e9851896704bbe0f5eeb13f471e,
         type: 3}
     - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
         type: 3}
