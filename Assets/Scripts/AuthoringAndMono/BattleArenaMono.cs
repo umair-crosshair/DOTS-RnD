@@ -14,19 +14,20 @@ namespace AuthoringAndMono
         public uint RandomSeed;
     }
 
-    public class BattleArenabAKER : Baker<BattleArenaMono>
+    public class BattleArenaBaker : Baker<BattleArenaMono>
     {
         public override void Bake(BattleArenaMono authoring)
         {
-            AddComponent(
+            var graveyardEntity = GetEntity(TransformUsageFlags.Dynamic);
+            AddComponent(graveyardEntity, 
                     new BattleArenaProperties
                     {
                         FieldDimensions = authoring.FieldDimensions,
                         NumberOfObstaclesToSpawn = authoring.NumberOfObstaclesToSpawn,
-                        ObstaclePrefab = GetEntity(authoring.ObstaclePrefab)
+                        ObstaclePrefab = GetEntity(authoring.ObstaclePrefab, TransformUsageFlags.Dynamic)
                     }
                 );
-            AddComponent(
+            AddComponent(graveyardEntity, 
                     new BattleArenaRandom
                     {
                         Value = Random.CreateFromIndex(authoring.RandomSeed)

@@ -2,7 +2,6 @@
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
-using UnityEngine;
 
 namespace Systems
 {
@@ -24,9 +23,9 @@ namespace Systems
             var battleArena = SystemAPI.GetAspect<BattleArenaAspect>(battleArenaEntity);
 
             var entityCommandBuffer = new EntityCommandBuffer(Allocator.Temp);
-            for (int i = 0; i >= battleArena.NumberOfObstaclesToSpawn; i++)
+            for (int i = 0; i <= battleArena.NumberOfObstaclesToSpawn; i++)
             {
-                entityCommandBuffer.Instantiate(battleArena.ObstaclePrefab);
+                var newObstacle = entityCommandBuffer.Instantiate(battleArena.ObstaclePrefab);
             }
             entityCommandBuffer.Playback(state.EntityManager);
         }
