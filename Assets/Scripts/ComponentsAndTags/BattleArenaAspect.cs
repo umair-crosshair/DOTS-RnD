@@ -18,7 +18,8 @@ namespace ComponentsAndTags
         private readonly RefRW<BattleArenaProperties> _battleArenaProperties;
         // Getting Number of obstacles to spawn
         public int NumberOfObstaclesToSpawn => _battleArenaProperties.ValueRO.NumberOfObstaclesToSpawn;
-        
+        // number of prefabs to spawn in one go per job 
+        public int NumberOfTroopsPerJob => _battleArenaProperties.ValueRO.NumberOfTroopsPerJob;
         // Obstacle prefabs
         public Entity ObstaclePrefab => _battleArenaProperties.ValueRO.ObstaclePrefab;
         // Player Troops Prefab

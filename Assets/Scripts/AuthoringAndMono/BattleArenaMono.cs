@@ -17,6 +17,8 @@ namespace AuthoringAndMono
         public uint RandomSeed;
         // troop prefabs
         public GameObject PlayerTroopPrefab;
+        // number of prefabs to spawn in one go per job 
+        public int NumberOfTroopsPerJob;
     }
 
     public class BattleArenaBaker : Baker<BattleArenaMono>
@@ -30,7 +32,8 @@ namespace AuthoringAndMono
                         FieldDimensions = authoring.FieldDimensions,
                         NumberOfObstaclesToSpawn = authoring.NumberOfObstaclesToSpawn,
                         ObstaclePrefab = GetEntity(authoring.ObstaclePrefab, TransformUsageFlags.Dynamic),
-                        PlayerTroopPrefab = GetEntity(authoring.PlayerTroopPrefab, TransformUsageFlags.Dynamic)
+                        PlayerTroopPrefab = GetEntity(authoring.PlayerTroopPrefab, TransformUsageFlags.Dynamic),
+                        NumberOfTroopsPerJob = authoring.NumberOfTroopsPerJob
                     }
                 );
             AddComponent(battleArenaEntity, 

@@ -18,24 +18,33 @@ namespace Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            //state.Enabled = false;
-            // getting battle arena entity
-            var BattleArenaEntity = SystemAPI.GetSingletonEntity<BattleArenaProperties>();
-            // getting battle arena aspect for the above entity
-            var BattleArenaAspect = SystemAPI.GetAspect<BattleArenaAspect>(BattleArenaEntity);
-            // initializing Entity command buffer to execute commands
-            var entityCommandBuffer = new EntityCommandBuffer(Allocator.Temp);
-            // instantiating player troop
-            var newTroop = entityCommandBuffer.Instantiate(BattleArenaAspect.PlayerTroopPrefab);
-            // setting random position of troop
-            var newTroopRandomTransform = BattleArenaAspect.GetRandomObstacleTransform();
-            entityCommandBuffer.SetComponent(newTroop, newTroopRandomTransform);
-            entityCommandBuffer.Playback(state.EntityManager);   
+            var entityCommandBuffer = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            var battleArenaEntity = SystemAPI.GetSingletonEntity<BattleArenaProperties>();
+            var battleArenaAspect = SystemAPI.GetAspect<BattleArenaAspect>(battleArenaEntity);
+            new SpawnTroopsJob
+            {
+                TroopsToSpawn = battleArenaAspect.NumberOfTroopsPerJob,
+                _entityCommandBuffer = entityCommandBuffer.CreateCommandBuffer(state.WorldUnmanaged)
+            }.Schedule();
         }
 
         [BurstCompile]
         public void OnDestroy(ref SystemState state)
         {
+        }
+    }
+    [BurstCompile]
+    public partial struct SpawnTroopsJob : IJobEntity
+    {
+        public int TroopsToSpawn;
+
+        public EntityCommandBuffer _entityCommandBuffer;
+        private void Execute(BattleArenaAspect battleArenaAspect)
+        {
+            for (int i = 0; i < TroopsToSpawn; i++)
+            {
+                _entityCommandBuffer.Instantiate(battleArenaAspect.PlayerTroopPrefab);
+            }
         }
     }
 }

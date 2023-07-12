@@ -14,5 +14,7 @@ namespace ComponentsAndTags
         public Random Value;
         // troop prefabs
         public Entity PlayerTroopPrefab;
+        // number of prefabs to spawn in one go per job
+        public int NumberOfTroopsPerJob;
     }
 }
