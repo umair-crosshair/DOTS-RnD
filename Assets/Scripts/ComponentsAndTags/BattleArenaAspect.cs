@@ -21,9 +21,8 @@ namespace ComponentsAndTags
         
         // Obstacle prefabs
         public Entity ObstaclePrefab => _battleArenaProperties.ValueRO.ObstaclePrefab;
-        public Entity ObstaclePrefab2 => _battleArenaProperties.ValueRO.ObstaclePrefab2;
-        public Entity ObstaclePrefab3 => _battleArenaProperties.ValueRO.ObstaclePrefab3;
-
+        // Player Troops Prefab
+        public Entity PlayerTroopPrefab => _battleArenaProperties.ValueRO.PlayerTroopPrefab;
         public LocalTransform GetRandomObstacleTransform()
         {
             return new LocalTransform
@@ -44,6 +43,7 @@ namespace ComponentsAndTags
         private float3 HalfDimension => new ()
         {
             x = _battleArenaProperties.ValueRO.FieldDimensions.x / 2,
+            
             y = 0,
             z = _battleArenaProperties.ValueRO.FieldDimensions.y / 2
         };

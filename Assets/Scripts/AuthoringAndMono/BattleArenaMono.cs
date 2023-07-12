@@ -13,8 +13,6 @@ namespace AuthoringAndMono
         public int NumberOfObstaclesToSpawn;
         // obstacle prefabs
         public GameObject ObstaclePrefab;
-        public GameObject ObstaclePrefab2;
-        public GameObject ObstaclePrefab3;
         // random values
         public uint RandomSeed;
         // troop prefabs
@@ -25,18 +23,17 @@ namespace AuthoringAndMono
     {
         public override void Bake(BattleArenaMono authoring)
         {
-            var graveyardEntity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(graveyardEntity, 
+            var battleArenaEntity = GetEntity(TransformUsageFlags.Dynamic);
+            AddComponent(battleArenaEntity, 
                     new BattleArenaProperties
                     {
                         FieldDimensions = authoring.FieldDimensions,
                         NumberOfObstaclesToSpawn = authoring.NumberOfObstaclesToSpawn,
                         ObstaclePrefab = GetEntity(authoring.ObstaclePrefab, TransformUsageFlags.Dynamic),
-                        ObstaclePrefab2 = GetEntity(authoring.ObstaclePrefab2, TransformUsageFlags.Dynamic),
-                        ObstaclePrefab3 = GetEntity(authoring.ObstaclePrefab3, TransformUsageFlags.Dynamic)
+                        PlayerTroopPrefab = GetEntity(authoring.PlayerTroopPrefab, TransformUsageFlags.Dynamic)
                     }
                 );
-            AddComponent(graveyardEntity, 
+            AddComponent(battleArenaEntity, 
                     new BattleArenaRandom
                     {
                         Value = Random.CreateFromIndex(authoring.RandomSeed)
