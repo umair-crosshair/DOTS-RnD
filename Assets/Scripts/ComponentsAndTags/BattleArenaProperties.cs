@@ -16,5 +16,7 @@ namespace ComponentsAndTags
         public Entity PlayerTroopPrefab;
         // number of prefabs to spawn in one go per job
         public int NumberOfTroopsPerJob;
+        public int EntitiesSpawnedCount;
+        public int MaxEntitesCount;
     }
 }

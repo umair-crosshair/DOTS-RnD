@@ -8,6 +8,8 @@ namespace AuthoringAndMono
 {
     public class BattleArenaMono : MonoBehaviour
     {
+        
+        
         // battle arena parameters
         public float2 FieldDimensions;
         public int NumberOfObstaclesToSpawn;
@@ -19,6 +21,10 @@ namespace AuthoringAndMono
         public GameObject PlayerTroopPrefab;
         // number of prefabs to spawn in one go per job 
         public int NumberOfTroopsPerJob;
+        [HideInInspector]
+        public int EntitiesSpawnedCount;
+
+        public int MaxEntitesCount;
     }
 
     public class BattleArenaBaker : Baker<BattleArenaMono>
@@ -33,7 +39,9 @@ namespace AuthoringAndMono
                         NumberOfObstaclesToSpawn = authoring.NumberOfObstaclesToSpawn,
                         ObstaclePrefab = GetEntity(authoring.ObstaclePrefab, TransformUsageFlags.Dynamic),
                         PlayerTroopPrefab = GetEntity(authoring.PlayerTroopPrefab, TransformUsageFlags.Dynamic),
-                        NumberOfTroopsPerJob = authoring.NumberOfTroopsPerJob
+                        NumberOfTroopsPerJob = authoring.NumberOfTroopsPerJob,
+                        EntitiesSpawnedCount = authoring.EntitiesSpawnedCount,
+                        MaxEntitesCount = authoring.MaxEntitesCount
                     }
                 );
             AddComponent(battleArenaEntity, 

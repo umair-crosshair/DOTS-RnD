@@ -1,6 +1,5 @@
 ﻿using ComponentsAndTags;
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
 
 namespace Systems
@@ -18,16 +17,24 @@ namespace Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            
             var entityCommandBuffer = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var battleArenaEntity = SystemAPI.GetSingletonEntity<BattleArenaProperties>();
             var battleArenaAspect = SystemAPI.GetAspect<BattleArenaAspect>(battleArenaEntity);
+                        
+            battleArenaAspect.EntitiesSpawnedCount += battleArenaAspect.NumberOfTroopsPerJob;
+            if (battleArenaAspect.EntitiesSpawnedCount > battleArenaAspect.MaxEntitesCount)
+            {
+                state.Enabled = false;
+                return;
+            }
             new SpawnTroopsJob
             {
                 TroopsToSpawn = battleArenaAspect.NumberOfTroopsPerJob,
-                _entityCommandBuffer = entityCommandBuffer.CreateCommandBuffer(state.WorldUnmanaged)
-            }.Schedule();
+                _entityCommandBuffer = entityCommandBuffer.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter()
+            }.ScheduleParallel();
         }
-
+        
         [BurstCompile]
         public void OnDestroy(ref SystemState state)
         {
@@ -38,12 +45,12 @@ namespace Systems
     {
         public int TroopsToSpawn;
 
-        public EntityCommandBuffer _entityCommandBuffer;
-        private void Execute(BattleArenaAspect battleArenaAspect)
+        public EntityCommandBuffer.ParallelWriter _entityCommandBuffer;
+        private void Execute(BattleArenaAspect battleArenaAspect, [EntityIndexInQuery] int sortKey)
         {
             for (int i = 0; i < TroopsToSpawn; i++)
             {
-                _entityCommandBuffer.Instantiate(battleArenaAspect.PlayerTroopPrefab);
+                _entityCommandBuffer.Instantiate(sortKey, battleArenaAspect.PlayerTroopPrefab);
             }
         }
     }

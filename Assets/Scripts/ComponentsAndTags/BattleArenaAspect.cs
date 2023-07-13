@@ -20,6 +20,20 @@ namespace ComponentsAndTags
         public int NumberOfObstaclesToSpawn => _battleArenaProperties.ValueRO.NumberOfObstaclesToSpawn;
         // number of prefabs to spawn in one go per job 
         public int NumberOfTroopsPerJob => _battleArenaProperties.ValueRO.NumberOfTroopsPerJob;
+
+        public int MaxEntitesCount => _battleArenaProperties.ValueRO.MaxEntitesCount;
+
+        public int EntitiesSpawnedCount
+        {
+            get
+            {
+                return _battleArenaProperties.ValueRO.EntitiesSpawnedCount;
+            }
+            set
+            {
+                _battleArenaProperties.ValueRW.EntitiesSpawnedCount = value;
+            }
+        }
         // Obstacle prefabs
         public Entity ObstaclePrefab => _battleArenaProperties.ValueRO.ObstaclePrefab;
         // Player Troops Prefab
