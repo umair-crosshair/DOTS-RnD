@@ -50,7 +50,10 @@ namespace Systems
         {
             for (int i = 0; i < TroopsToSpawn; i++)
             {
-                _entityCommandBuffer.Instantiate(sortKey, battleArenaAspect.PlayerTroopPrefab);
+                var tempTroop = _entityCommandBuffer.Instantiate(sortKey, battleArenaAspect.PlayerTroopPrefab);
+
+                var newBattleArenaTransform = battleArenaAspect.GetRandomObstacleTransform();
+                _entityCommandBuffer.SetComponent(sortKey, tempTroop, newBattleArenaTransform);
             }
         }
     }
