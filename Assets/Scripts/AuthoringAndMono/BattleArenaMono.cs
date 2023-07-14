@@ -8,8 +8,6 @@ namespace AuthoringAndMono
 {
     public class BattleArenaMono : MonoBehaviour
     {
-        
-        
         // battle arena parameters
         public float2 FieldDimensions;
         public int NumberOfObstaclesToSpawn;
