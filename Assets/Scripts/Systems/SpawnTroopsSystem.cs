@@ -1,4 +1,5 @@
-﻿using ComponentsAndTags;
+﻿using 
+    ComponentsAndTags;
 using Unity.Burst;
 using Unity.Entities;
 
@@ -34,17 +35,12 @@ namespace Systems
                 _entityCommandBuffer = entityCommandBuffer.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter()
             }.ScheduleParallel();
         }
-        
-        [BurstCompile]
-        public void OnDestroy(ref SystemState state)
-        {
-        }
     }
     [BurstCompile]
     public partial struct SpawnTroopsJob : IJobEntity
     {
         public int TroopsToSpawn;
-
+        
         public EntityCommandBuffer.ParallelWriter _entityCommandBuffer;
         private void Execute(BattleArenaAspect battleArenaAspect, [EntityIndexInQuery] int sortKey)
         {
