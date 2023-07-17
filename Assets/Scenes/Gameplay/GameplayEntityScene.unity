@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc94f11eb8747dcb9478acc9f58b344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
+  MoveSpeed: 0.1
 --- !u!1001 &5513477388380947172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ PrefabInstance:
     - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
         type: 3}
       propertyPath: MaxEntitesCount
-      value: 200000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
         type: 3}

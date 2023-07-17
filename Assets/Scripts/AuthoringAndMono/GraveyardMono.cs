@@ -23,7 +23,6 @@ namespace AuthoringAndMono
                         FieldDimensions = authoring.FieldDimensions,
                         NumberOfTombstonesToSpawn = authoring.NumberOfTombstonesToSpawn,
                         TombstonePrefab = GetEntity(authoring.TombstonePrefab)
-
                     }
             );
             AddComponent(new GraveyardRandom{

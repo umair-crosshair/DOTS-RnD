@@ -15,7 +15,6 @@ namespace TMG.InputSystemTutorial
         {
             var playerEntity = GetEntity(TransformUsageFlags.Dynamic);
             
-            //AddComponent<PlayerTag>(playerEntity);
             AddComponent<TroopMoveInput>(playerEntity);
             
             AddComponent(playerEntity, new TroopMoveSpeed()

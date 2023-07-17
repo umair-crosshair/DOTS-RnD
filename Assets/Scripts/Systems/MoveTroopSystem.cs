@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using ComponentsAndTags;
+﻿using ComponentsAndTags;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -10,25 +9,35 @@ namespace Systems
     [UpdateBefore(typeof(TransformSystemGroup))]
     public partial struct MoveTroopSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<TroopMoveInput>();
+        }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
-            new MoveTroopJob
+            var troopMoveInput = SystemAPI.GetSingleton<TroopMoveInput>();
+            new MoveTroopJob()
             {
-                DeltaTime = deltaTime
-            }.Schedule();
+                DeltaTime = deltaTime,
+                inputValue = troopMoveInput.InputValue
+            }.ScheduleParallel();
         }
-    }
+        }
+        [BurstCompile]
     public partial struct MoveTroopJob : IJobEntity
     {
         public float DeltaTime;
+        public float2 inputValue;
+        
         [BurstCompile]
-        private void Execute(ref LocalTransform localTransform, in TroopMoveInput moveInput, TroopMoveSpeed moveSpeed)
-        {
-            localTransform.Position.xz += moveInput.InputValue * moveSpeed.Value * DeltaTime;
+            private void Execute(TroopMoveAspect troop , [EntityIndexInQuery] int sortKey)
+            {
+                
+                troop.Move(inputValue);
+            }
         }
         
     }
-}
