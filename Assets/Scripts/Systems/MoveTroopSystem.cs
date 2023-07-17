@@ -36,7 +36,7 @@ namespace Systems
             private void Execute(TroopMoveAspect troop , [EntityIndexInQuery] int sortKey)
             {
                 
-                troop.Move(inputValue);
+                troop.Move(inputValue, DeltaTime);
             }
         }
         

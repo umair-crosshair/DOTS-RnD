@@ -22,11 +22,5 @@ namespace Systems
             var graveyard = SystemAPI.GetAspect<GraveyardAspect>(graveyardEntity);
             
         }
-
-        [BurstCompile]
-        public void OnDestroy(ref SystemState state)
-        {
-
-        }
     }
 }

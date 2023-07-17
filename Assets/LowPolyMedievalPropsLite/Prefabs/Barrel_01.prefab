@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2989941937331053745}
   - component: {fileID: 2220753782300879636}
   - component: {fileID: 4122276373789597662}
-  - component: {fileID: 6094787773558367535}
+  - component: {fileID: 292660711092341430}
   m_Layer: 0
   m_Name: Barrel_01
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6094787773558367535
+--- !u!114 &292660711092341430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
