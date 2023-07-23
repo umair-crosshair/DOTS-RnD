@@ -2,10 +2,12 @@
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Transforms;
 
 namespace Systems
 {
+    /// <summary>
+    /// System to spawn obstacles
+    /// </summary>
     [BurstCompile]
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     public partial struct SpawnObstaclesSystem : ISystem
@@ -19,24 +21,27 @@ namespace Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            // disable update loop to stop system in the next frame
             state.Enabled = false;
+            // cache BattleArenaProperties component
             var battleArenaEntity = SystemAPI.GetSingletonEntity<BattleArenaProperties>();
+            // cache BattleArenaAspect
             var battleArena = SystemAPI.GetAspect<BattleArenaAspect>(battleArenaEntity);
-                
+            // initialize entity Command buffer
             var entityCommandBuffer = new EntityCommandBuffer(Allocator.Temp);
             for (int i = 0; i <= battleArena.NumberOfObstaclesToSpawn; i++)
             {
+                    // instanciate prefabs on main thread using entity command buffer 
                     var newObstacle = entityCommandBuffer.Instantiate(battleArena.ObstaclePrefab);
+                    // set random position for new obstacle  
                     var newBattleArenaTransform = battleArena.GetRandomObstacleTransform();
+                    // set new position to prefabs
                     entityCommandBuffer.SetComponent(newObstacle, newBattleArenaTransform);
             }
+            // run command on main thread
             entityCommandBuffer.Playback(state.EntityManager);
         }
 
-        [BurstCompile]
-        public void OnDestroy(ref SystemState state)
-        {
-
-        }
+        
     }
 }

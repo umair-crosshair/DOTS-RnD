@@ -4,6 +4,9 @@ using Unity.Transforms;
 
 namespace ComponentsAndTags
 {
+    /// <summary>
+    /// Aspect containing battle arena properties
+    /// </summary>
     public readonly partial struct BattleArenaAspect : IAspect
     {
         // To get entity that has this aspect attached to it
@@ -20,7 +23,7 @@ namespace ComponentsAndTags
         public int NumberOfObstaclesToSpawn => _battleArenaProperties.ValueRO.NumberOfObstaclesToSpawn;
         // number of prefabs to spawn in one go per job 
         public int NumberOfTroopsPerJob => _battleArenaProperties.ValueRO.NumberOfTroopsPerJob;
-
+        // max number of entites allowed to spawn
         public int MaxEntitesCount => _battleArenaProperties.ValueRO.MaxEntitesCount;
 
         public int EntitiesSpawnedCount

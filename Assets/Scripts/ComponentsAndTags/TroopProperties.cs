@@ -1,9 +1,11 @@
 ﻿using Unity.Entities;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace ComponentsAndTags
 {
+    /// <summary>
+    /// component holding Troops transform
+    /// </summary>
     public struct TroopProperties : IComponentData
     {
         public LocalTransform TroopTransform;

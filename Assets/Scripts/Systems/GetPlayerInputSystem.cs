@@ -4,7 +4,14 @@ using UnityEngine;
 
 namespace Systems
 {
+    /// <summary>
+    /// System to read player input
+    /// </summary>
+
+    // update current system in InitializationSystemGroup
     [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
+
+
     public partial class GetPlayerInputSystem : SystemBase
     {
         private TroopControls troopControls;
@@ -30,6 +37,7 @@ namespace Systems
 
         protected override void OnUpdate()
         {
+            // each frame get input value from troopControls class and assign to the TroopMoveInput component
             var currentMoveInput = troopControls.troopactionmap.troopmovement.ReadValue<Vector2>();
             SystemAPI.SetSingleton(new TroopMoveInput{ InputValue = currentMoveInput });
         }
