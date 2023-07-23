@@ -6,10 +6,14 @@ using Random = Unity.Mathematics.Random;
 
 namespace AuthoringAndMono
 {
+    /// <summary>
+    /// Mono behaviour class that represents the BattleArenaProperties struct.
+    /// </summary>
     public class BattleArenaMono : MonoBehaviour
     {
         // battle arena parameters
         public float2 FieldDimensions;
+        // obstacle prefabs to spawn 
         public int NumberOfObstaclesToSpawn;
         // obstacle prefabs
         public GameObject ObstaclePrefab;
@@ -21,15 +25,20 @@ namespace AuthoringAndMono
         public int NumberOfTroopsPerJob;
         [HideInInspector]
         public int EntitiesSpawnedCount;
-
+        // Max entities allowed to spawn in total
         public int MaxEntitesCount;
     }
-
+    /// <summary>
+    /// Baker class to bake BattleArenaMono data into the Battle arena properties struct
+    /// </summary>
     public class BattleArenaBaker : Baker<BattleArenaMono>
     {
+        // function to bake data into BattleArenaMono class
         public override void Bake(BattleArenaMono authoring)
         {
+            // Getting entity having the battleArenaProperties component
             var battleArenaEntity = GetEntity(TransformUsageFlags.Dynamic);
+            // maping battleArenaMono class properties to BattleArenaProperties struct
             AddComponent(battleArenaEntity, 
                     new BattleArenaProperties
                     {
@@ -42,6 +51,7 @@ namespace AuthoringAndMono
                         MaxEntitesCount = authoring.MaxEntitesCount
                     }
                 );
+            // maping battleArenaMono class random property to BattleArenaRandom struct
             AddComponent(battleArenaEntity, 
                     new BattleArenaRandom
                     {

@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace AuthoringAndMono
 {
+    /// <summary>
+    /// Mono behaviour class that assigns data to the TroopMoveInput and TroopMoveSpeed struct.
+    /// </summary>
     public class TroopMono : MonoBehaviour
     {
         public readonly Entity entity;
