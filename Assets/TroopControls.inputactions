@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "KeyPresses",
+                    "type": "Button",
+                    "id": "bb5f12a6-f2bf-4e8f-930f-bd91d485fc29",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -125,6 +134,17 @@
                     "action": "troop movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "867cfa32-3226-436c-bd82-54e3246fd675",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyPresses",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

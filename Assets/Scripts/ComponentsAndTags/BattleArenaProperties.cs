@@ -8,6 +8,7 @@ namespace ComponentsAndTags
     /// </summary>
     public struct BattleArenaProperties : IComponentData
     {
+        public bool AllowSpawning;
         // battle arena parameters
         public float2 FieldDimensions;
         // number of obstacles which can spawn

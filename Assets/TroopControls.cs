@@ -35,6 +35,15 @@ public partial class @TroopControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""KeyPresses"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb5f12a6-f2bf-4e8f-930f-bd91d485fc29"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -147,6 +156,17 @@ public partial class @TroopControls: IInputActionCollection2, IDisposable
                     ""action"": ""troop movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""867cfa32-3226-436c-bd82-54e3246fd675"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyPresses"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -156,6 +176,7 @@ public partial class @TroopControls: IInputActionCollection2, IDisposable
         // troop action map
         m_troopactionmap = asset.FindActionMap("troop action map", throwIfNotFound: true);
         m_troopactionmap_troopmovement = m_troopactionmap.FindAction("troop movement", throwIfNotFound: true);
+        m_troopactionmap_KeyPresses = m_troopactionmap.FindAction("KeyPresses", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,11 +239,13 @@ public partial class @TroopControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_troopactionmap;
     private List<ITroopactionmapActions> m_TroopactionmapActionsCallbackInterfaces = new List<ITroopactionmapActions>();
     private readonly InputAction m_troopactionmap_troopmovement;
+    private readonly InputAction m_troopactionmap_KeyPresses;
     public struct TroopactionmapActions
     {
         private @TroopControls m_Wrapper;
         public TroopactionmapActions(@TroopControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @troopmovement => m_Wrapper.m_troopactionmap_troopmovement;
+        public InputAction @KeyPresses => m_Wrapper.m_troopactionmap_KeyPresses;
         public InputActionMap Get() { return m_Wrapper.m_troopactionmap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -235,6 +258,9 @@ public partial class @TroopControls: IInputActionCollection2, IDisposable
             @troopmovement.started += instance.OnTroopmovement;
             @troopmovement.performed += instance.OnTroopmovement;
             @troopmovement.canceled += instance.OnTroopmovement;
+            @KeyPresses.started += instance.OnKeyPresses;
+            @KeyPresses.performed += instance.OnKeyPresses;
+            @KeyPresses.canceled += instance.OnKeyPresses;
         }
 
         private void UnregisterCallbacks(ITroopactionmapActions instance)
@@ -242,6 +268,9 @@ public partial class @TroopControls: IInputActionCollection2, IDisposable
             @troopmovement.started -= instance.OnTroopmovement;
             @troopmovement.performed -= instance.OnTroopmovement;
             @troopmovement.canceled -= instance.OnTroopmovement;
+            @KeyPresses.started -= instance.OnKeyPresses;
+            @KeyPresses.performed -= instance.OnKeyPresses;
+            @KeyPresses.canceled -= instance.OnKeyPresses;
         }
 
         public void RemoveCallbacks(ITroopactionmapActions instance)
@@ -262,5 +291,6 @@ public partial class @TroopControls: IInputActionCollection2, IDisposable
     public interface ITroopactionmapActions
     {
         void OnTroopmovement(InputAction.CallbackContext context);
+        void OnKeyPresses(InputAction.CallbackContext context);
     }
 }

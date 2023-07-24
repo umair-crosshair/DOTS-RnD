@@ -18,11 +18,14 @@ namespace Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            
             var entityCommandBuffer = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var battleArenaEntity = SystemAPI.GetSingletonEntity<BattleArenaProperties>();
             var battleArenaAspect = SystemAPI.GetAspect<BattleArenaAspect>(battleArenaEntity);
-                        
+
+            if (!battleArenaAspect.AllowSpawning)
+            {
+                return;
+            }            
             battleArenaAspect.EntitiesSpawnedCount += battleArenaAspect.NumberOfTroopsPerJob;
             if (battleArenaAspect.EntitiesSpawnedCount > battleArenaAspect.MaxEntitesCount)
             {
@@ -40,9 +43,8 @@ namespace Systems
     public partial struct SpawnTroopsJob : IJobEntity
     {
         public int TroopsToSpawn;
-        
         public EntityCommandBuffer.ParallelWriter _entityCommandBuffer;
-        private void Execute(BattleArenaAspect battleArenaAspect, [EntityIndexInQuery] int sortKey)
+        private void Execute(BattleArenaAspect battleArenaAspect , [EntityIndexInQuery] int sortKey)
         {
             for (int i = 0; i < TroopsToSpawn; i++)
             {

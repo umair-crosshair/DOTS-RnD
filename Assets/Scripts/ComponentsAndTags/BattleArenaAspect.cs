@@ -20,12 +20,43 @@ namespace ComponentsAndTags
         // Getting write access to BattleArena Properties
         private readonly RefRW<BattleArenaProperties> _battleArenaProperties;
         // Getting Number of obstacles to spawn
+
         public int NumberOfObstaclesToSpawn => _battleArenaProperties.ValueRO.NumberOfObstaclesToSpawn;
         // number of prefabs to spawn in one go per job 
-        public int NumberOfTroopsPerJob => _battleArenaProperties.ValueRO.NumberOfTroopsPerJob;
+        public int NumberOfTroopsPerJob
+        {
+            get
+            {
+                return _battleArenaProperties.ValueRO.NumberOfTroopsPerJob;
+            }
+            set
+            {
+                _battleArenaProperties.ValueRW.NumberOfTroopsPerJob = value;
+            }
+        }
         // max number of entites allowed to spawn
-        public int MaxEntitesCount => _battleArenaProperties.ValueRO.MaxEntitesCount;
-
+        public int MaxEntitesCount
+        {
+            get
+            {
+                return _battleArenaProperties.ValueRO.MaxEntitesCount;
+            }
+            set
+            {
+                _battleArenaProperties.ValueRW.MaxEntitesCount = value;
+            }
+        }
+        public bool AllowSpawning
+        {
+            get
+            {
+                return _battleArenaProperties.ValueRO.AllowSpawning;
+            }
+            set
+            {
+                _battleArenaProperties.ValueRW.AllowSpawning = value;
+            }
+        }
         public int EntitiesSpawnedCount
         {
             get

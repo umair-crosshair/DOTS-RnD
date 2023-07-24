@@ -11,6 +11,7 @@ namespace AuthoringAndMono
     /// </summary>
     public class BattleArenaMono : MonoBehaviour
     {
+        public bool AllowSpawning;
         // battle arena parameters
         public float2 FieldDimensions;
         // obstacle prefabs to spawn 
@@ -38,10 +39,11 @@ namespace AuthoringAndMono
         {
             // Getting entity having the battleArenaProperties component
             var battleArenaEntity = GetEntity(TransformUsageFlags.Dynamic);
-            // maping battleArenaMono class properties to BattleArenaProperties struct
+            // mapping battleArenaMono class properties to BattleArenaProperties struct
             AddComponent(battleArenaEntity, 
                     new BattleArenaProperties
                     {
+                        AllowSpawning = authoring.AllowSpawning,
                         FieldDimensions = authoring.FieldDimensions,
                         NumberOfObstaclesToSpawn = authoring.NumberOfObstaclesToSpawn,
                         ObstaclePrefab = GetEntity(authoring.ObstaclePrefab, TransformUsageFlags.Dynamic),

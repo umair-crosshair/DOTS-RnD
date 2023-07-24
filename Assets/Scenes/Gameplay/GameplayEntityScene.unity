@@ -162,6 +162,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
         type: 3}
+      propertyPath: AllowSpawning
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
+        type: 3}
       propertyPath: ObstaclePrefab
       value: 
       objectReference: {fileID: 2465079734990110219, guid: af0251662ce5880478fc4015a2c7df13,
@@ -169,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
         type: 3}
       propertyPath: MaxEntitesCount
-      value: 10000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
         type: 3}
@@ -208,6 +213,11 @@ PrefabInstance:
         type: 3}
       propertyPath: NumberOfObstaclesToSpawn
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134766643995234327, guid: a280773d59927db4fa2968753233f977,
+        type: 3}
+      propertyPath: NumberOfTroopsPerJobText
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2119847181446019645, guid: a280773d59927db4fa2968753233f977,
         type: 3}
@@ -298,8 +308,3 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 216498895}
   m_SourcePrefab: {fileID: 100100000, guid: a280773d59927db4fa2968753233f977, type: 3}
---- !u!1660057539 &9223372036854775807
-SceneRoots:
-  m_ObjectHideFlags: 0
-  m_Roots:
-  - {fileID: 5513477388380947172}

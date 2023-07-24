@@ -1,6 +1,7 @@
 ﻿using ComponentsAndTags;
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Systems
 {
@@ -26,12 +27,20 @@ namespace Systems
         protected override void OnStartRunning()
         {
             troopControls.Enable();
+            troopControls.troopactionmap.KeyPresses.performed += StartSpawnActionPressed;
             entity = SystemAPI.GetSingletonEntity<BattleArenaProperties>();
+        }
+
+        private void StartSpawnActionPressed(InputAction.CallbackContext obj)
+        {
+            if (SystemAPI.Exists(entity)) return;
+            SystemAPI.SetComponentEnabled<SpawnBehaviourTag>(entity, true);
         }
 
         protected override void OnStopRunning()
         {
             troopControls.Disable();
+            troopControls.troopactionmap.KeyPresses.performed -= StartSpawnActionPressed;
             entity = Entity.Null;
         }
 
