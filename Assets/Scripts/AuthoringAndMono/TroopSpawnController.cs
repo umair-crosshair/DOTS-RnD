@@ -79,7 +79,8 @@ namespace AuthoringAndMono
             }
 
             // clamping values so that they remain within the range
-            maxEntitiesCount = ClampValue(maxEntitiesCount, 300000);
+            //maxEntitiesCount = ClampValue(maxEntitiesCount, 300000);
+            
             numberOfTroopsPerJob = ClampValue(numberOfTroopsPerJob, 10000);
             // validating input
             ValidateSetInput(maxEntitiesCount, numberOfTroopsPerJob);
