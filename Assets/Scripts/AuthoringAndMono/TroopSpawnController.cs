@@ -1,9 +1,10 @@
 using System;
+using AuthoringAndMono;
 using ComponentsAndTags;
 using Unity.Entities;
 using UnityEngine;
 
-namespace AuthoringAndMono
+namespace Systems
 {
     /// <summary>
     /// MonoBehaviour to control the starting of spawn System.

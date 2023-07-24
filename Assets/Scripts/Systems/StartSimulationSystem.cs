@@ -1,7 +1,8 @@
 ﻿using System;
+using ComponentsAndTags;
 using Unity.Entities;
 
-namespace ComponentsAndTags
+namespace Systems
 {
     public partial class StartSimulationSystem : SystemBase
     {
